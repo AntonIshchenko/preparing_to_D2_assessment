@@ -5,6 +5,8 @@ import java.util.Set;
 
 public class GraphProcessing {
 
+   private GraphProcessing() {}
+
    public static FullGraph proceedGraph(String rootNode, FullGraph graph) {
       List<String> keys = getKeysWithFirstRootNode(graph, rootNode);
       return calculateDistances(graph, keys, rootNode);
@@ -34,25 +36,31 @@ public class GraphProcessing {
    }
 
    private static FullGraph calculateDistances(FullGraph graph, List<String> keys, String rootNode) {
-      graph.getNodes().get(rootNode).setDistance(0d);
-      Node currentNode = graph.getNodes().get(rootNode);
-      String srcName = rootNode;
+      Map<String, Node> graphNodes = graph.getNodes();
+      graphNodes.get(rootNode).setDistance(0d);
+      Node currentNode = graphNodes.get(rootNode);
+      String srcKey = rootNode;
 
       for (int i = 0; i < keys.size(); i++) {
-         Map<String, Double> connectedNodes = graph.getNodes().get(srcName).getPairsNodeDistance();
+         Map<String, Double> connectedNodes = graphNodes.get(srcKey).getConnectedNodes();
 
-         for (String dstName : keys) {
-            if (connectedNodes.containsKey(dstName)) {
-               Double distance = graph.getNodes().get(srcName).getDistance() + currentNode.getPairsNodeDistance().get(dstName);
-               if (distance < graph.getNodes().get(dstName).getDistance()) {
-                  graph.getNodes().get(dstName).setDistance(distance);
+         for (String dstKey : keys) {
+            if (connectedNodes.containsKey(dstKey)) {
+               Double distance = graphNodes.get(srcKey).getDistance() + currentNode.getConnectedNodes().get(dstKey);
+               if (distance < graphNodes.get(dstKey).getDistance()) {
+                  graphNodes.get(dstKey).setDistance(distance);
                }
             }
          }
 
-         graph.getNodes().get(srcName).setDone();
-         srcName = getNextName(keys, graph);
-         currentNode = graph.getNodes().get(srcName);
+         graphNodes.get(srcKey).setDone();
+         srcKey = getNextName(keys, graph);
+         if (srcKey.isEmpty()) {
+            String message = "There is no way from root node to " + srcKey + " please try with another parameters. \n Operation Terminated! \n \n";
+            System.err.println(message);
+            break;
+         }
+         currentNode = graphNodes.get(srcKey);
       }
       return graph;
    }

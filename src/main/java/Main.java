@@ -4,7 +4,9 @@ public class Main {
 
       FullGraph result = GraphProcessing.proceedGraph(ConsoleInterface.getRootNode(), ConsoleInterface.getGraph());
 
-      result.getNodes().keySet().forEach(a -> System.out.println("Distance to " + a + " = " + result.getNodes().get(a).getDistance()));
+      result.getNodes().entrySet().forEach(
+            a -> System.out.println("Distance from " + ConsoleInterface.getRootNode() + " to " + a.getKey() + " = " + a.getValue().getDistance())
+      );
    }
-   
+
 }

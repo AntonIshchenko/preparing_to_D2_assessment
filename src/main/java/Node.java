@@ -5,7 +5,7 @@ public class Node {
 
    private boolean done = false;
    private Double distance = Double.POSITIVE_INFINITY;
-   private Map<String, Double> pairNodeDistance = new HashMap<>();
+   private Map<String, Double> connectedNodes = new HashMap<>();
 
    public Double getDistance() {
       return distance;
@@ -24,11 +24,11 @@ public class Node {
    }
 
    public void setDestination(String name, Double distance) {
-      pairNodeDistance.put(name, distance);
+      connectedNodes.put(name, distance);
    }
 
-   public Map<String, Double> getPairsNodeDistance() {
-      return new HashMap<>(pairNodeDistance);
+   public Map<String, Double> getConnectedNodes() {
+      return new HashMap<>(connectedNodes);
    }
 
 }
