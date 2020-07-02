@@ -1,3 +1,5 @@
+package dijkstraalgorithm;
+
 import java.util.Scanner;
 import java.util.Set;
 

@@ -1,3 +1,5 @@
+package dijkstraalgorithm;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -56,8 +58,6 @@ public class GraphProcessing {
          graphNodes.get(srcKey).setDone();
          srcKey = getNextName(keys, graph);
          if (srcKey.isEmpty()) {
-            String message = "There is no way from root node to " + srcKey + " please try with another parameters. \n Operation Terminated! \n \n";
-            System.err.println(message);
             break;
          }
          currentNode = graphNodes.get(srcKey);
