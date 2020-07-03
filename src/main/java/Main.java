@@ -4,7 +4,7 @@ import streams.HandleEmployees;
 public class Main {
 
    public static void main(String[] args) {
-      //runStreams();
+      runStreams();
       //      InstantiateInnerClasses.main();
       //      runDijkstra();
    }

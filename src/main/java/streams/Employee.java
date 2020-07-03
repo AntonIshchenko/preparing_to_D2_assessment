@@ -1,14 +1,13 @@
 package streams;
 
-import javax.swing.JPanel;
 import java.time.LocalDate;
 
 public class Employee {
 
    private final String firsName;
    private final String secondName;
-   private final LocalDate birthday;
 
+   private final LocalDate birthday;
    private EmployeeGender gender;
    private JobPositions jobPosition;
    private Integer workExperience;
@@ -18,6 +17,10 @@ public class Employee {
       this.secondName = secondName;
       this.birthday = birthday;
       this.gender = gender;
+   }
+
+   public LocalDate getBirthday() {
+      return birthday;
    }
 
    public EmployeeGender getGender() {

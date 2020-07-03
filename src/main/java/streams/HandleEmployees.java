@@ -1,10 +1,12 @@
 package streams;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class HandleEmployees implements Runnable {
    @Override
@@ -35,5 +37,14 @@ public class HandleEmployees implements Runnable {
       list.parallelStream().flatMap(Collection::stream).sorted().forEach(System.out::println);
       System.out.println("\n Вывести список всех имен и фамилий по отделььности, отсортированных по алфавиту(параллельный стрим упорядочен) \n");
       list.parallelStream().flatMap(Collection::stream).sorted().forEachOrdered(System.out::println);
+      System.out.println("\n Создать стрим работников по имени иван, так чтобы  уних возраст был числами Фибонначи \n");
+      Stream.iterate(new Employee[] {
+                  new Employee("Ivan", "Ivanov", LocalDate.now(), EmployeeGender.OTHER),
+                  new Employee("Ivan", "Ivanov", LocalDate.now().minusYears(1), EmployeeGender.OTHER) },
+            e -> new Employee[] {
+                  new Employee("Ivan", "Ivanov", LocalDate.now().minusYears(LocalDate.now().compareTo(e[1].getBirthday())), EmployeeGender.OTHER),
+                  new Employee("Ivan", "Ivanov", LocalDate.now().minusYears(LocalDate.now().compareTo(e[1].getBirthday()) + LocalDate.now().compareTo(e[0].getBirthday())), EmployeeGender.OTHER)
+            }
+      ).limit(15).map(e -> e[0]).forEach(System.out::println);
    }
 }
