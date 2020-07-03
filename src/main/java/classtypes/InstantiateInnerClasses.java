@@ -2,7 +2,9 @@ package classtypes;
 
 public class InstantiateInnerClasses {
 
-   public static void main(String[] args) {
+   private InstantiateInnerClasses() {}
+
+   public static void main() {
       Outer outer = new Outer();
       Outer.PublicInner publicInner = new Outer().new PublicInner();
       publicInner.printNames();
@@ -11,9 +13,6 @@ public class InstantiateInnerClasses {
       //Outer.PrivateInner privateInner = outer.getPrivateInner(); can not access private class
       outer.runPrivateClassMethod();
       outer.createAnonymousClass();
-
-
-
    }
 
 }

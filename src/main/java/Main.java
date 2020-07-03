@@ -1,12 +1,12 @@
 import dijkstraalgorithm.DijkstraAlgorithmRunner;
+import streams.HandleEmployees;
 
 public class Main {
 
    public static void main(String[] args) {
-
-
-
-      runDijkstra();
+      //runStreams();
+      //      InstantiateInnerClasses.main();
+      //      runDijkstra();
    }
 
    private static void runDijkstra() {
@@ -14,4 +14,8 @@ public class Main {
       thread1.start();
    }
 
+   private static void runStreams() {
+      Thread thread2 = new Thread(new HandleEmployees());
+      thread2.start();
+   }
 }
