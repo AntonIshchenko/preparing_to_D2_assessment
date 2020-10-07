@@ -48,7 +48,7 @@ public class Outer {
       final String local = "Final Local String";
       class ClassInMethod {
          public void printNames() {
-            //System.out.println(number);// cannot print local variable because it's not final or effectively final
+//            System.out.println(number);// cannot print local variable because it's not final or effectively final
             System.out.println(local); // can print because it's class variable
             System.out.println(firsName); // can print because it's class variable
             System.out.println(secondName); // can print because it's class variable
@@ -60,3 +60,4 @@ public class Outer {
    }
 
 }
+

@@ -37,7 +37,7 @@ public class HandleEmployees implements Runnable {
       list.parallelStream().flatMap(Collection::stream).sorted().forEach(System.out::println);
       System.out.println("\n Вывести список всех имен и фамилий по отделььности, отсортированных по алфавиту(параллельный стрим упорядочен) \n");
       list.parallelStream().flatMap(Collection::stream).sorted().forEachOrdered(System.out::println);
-      System.out.println("\n Создать стрим работников по имени иван, так чтобы  уних возраст был числами Фибонначи \n");
+      System.out.println("\n Создать стрим работников по имени иван, так чтобы у них возраст был числами Фибонначи \n");
       Stream.iterate(new Employee[] {
                   new Employee("Ivan", "Ivanov", LocalDate.now(), EmployeeGender.OTHER),
                   new Employee("Ivan", "Ivanov", LocalDate.now().minusYears(1), EmployeeGender.OTHER) },
